@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <script>var total = 0;</script>
+    <div style="text-align: center;">
+      <h2>Score: {{ score }}</h2>
+      <p><a id="btg" href="{{ url_for('index')}}">Back to game</a></p>
+    </div>
+    <div id="skin-container">
+    {% for skin in skins %}
+      <div class="skin-purchase">
+        <img src="{{ skin['path'] }}" width="120" height="120">
+        <p>{{ skin["name"] }}</p>
+        {% if not skin["name"] in owned %}
+        <form method="POST">
+          <input type="hidden" name="name" value="{{ skin['name'] }}">
+          <input type="submit" value="Buy for {{ skin['cost'] }}" class="purchase-button skin-button">
+        </form>
+        {% else %}
+        <script>total += {{ skin["cost"] }}</script>
+        <button class="skin-button">Owned</button>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <p style="font-size: 12px;">Cumulative score: <span id="total-score"></span></p>
+    <script>
+      document.getElementById("total-score").innerHTML = (total +  {{score}}).toLocaleString();
+    </script>
+    </div>
+  </body>
+</html>

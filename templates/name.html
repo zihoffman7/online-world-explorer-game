@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <form method="POST" id="enter-area">
+      <h2>World</h2>
+      <p><input type="text" name="name" maxlength="20" placeholder="Username"></p>
+      <form action="/action_page.php">
+      <p>
+        <select required name="skin" id="skins">
+          {% for skin in skins %}
+          <option class="skin" value="{{ skin['name'] }}">{{ skin["name"] }}</option>
+          {% endfor %}
+        </select>
+        <a href="{{ url_for('skin_select')}}">Skins</a>
+      </p>
+      <p><img src="" width="100" height="100" id="skin"></p>
+      <p><input type="submit" value="Enter"></p>
+    </form>
+    <script>
+      var skins = {{ skins|tojson }};
+      var nSkins = {};
+      for (var skin of skins) {
+        nSkins[skin.name] = skin.path;
+      }
+      document.getElementById("skin").src = nSkins[document.querySelector("#skins").value];
+
+      (function() {
+        document.querySelector("#skins").addEventListener("change", function() {
+          document.getElementById("skin").src = nSkins[this.value];
+        });
+      })();
+
+
+    </script>
+  </body>
+</html>

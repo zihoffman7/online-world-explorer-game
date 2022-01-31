@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.0/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div id="game-area">
+      <div id="canvas-area">
+        <canvas id="game" width="400" height="400"></canvas>
+        <canvas id="minimap" width="100" height="100"></canvas>
+      </div>
+      <form id="chat" method="POST">
+        <input type="text" placeholder="Message here" name="message" autocomplete="off" maxlength="32" id="message">
+        <input type="submit" value="Send">
+      </form>
+    </div>
+    <div id="mobile-controls">
+      <div id="up"></div>
+      <div id="down"></div>
+      <div id="left"></div>
+      <div id="right"></div>
+    </div>
+    <p style="text-align: center;"><a id="btg" href="{{ url_for('index')}}">Back</a></p>
+    <script>
+      var canvas = document.getElementById("game");
+      var ctx = canvas.getContext("2d");
+      var mcanvas = document.getElementById("minimap");
+      var mctx = mcanvas.getContext("2d");
+      var skins = {};
+      var sounds = {
+        "slider": new sound("{{ url_for('static', filename='audio/slider.mp3')}}", 0.3, true),
+        "snow": new sound("{{ url_for('static', filename='audio/snow.mp3')}}", 0.3, true),
+        "beach": new sound("{{ url_for('static', filename='audio/beach.mp3')}}", 0.3, true),
+        "cave": new sound("{{ url_for('static', filename='audio/cave.mp3')}}", 0.3, true),
+        "cloud": new sound("{{ url_for('static', filename='audio/cloud.mp3')}}", 0.3, true),
+        "volcano": new sound("{{ url_for('static', filename='audio/volcano.mp3')}}", 0.3, true),
+        "bonus": new sound("{{ url_for('static', filename='audio/bonus.mp3')}}", 0.3, true),
+        "overworld": new sound("{{ url_for('static', filename='audio/overworld.mp3')}}", 0.3, true),
+        "teleport": new sound("{{ url_for('static', filename='audio/teleport.mp3')}}", 1, false),
+        "treasure": new sound("{{ url_for('static', filename='audio/treasure.mp3')}}", 1, false),
+        "food": new sound("{{ url_for('static', filename='audio/food.mp3')}}", 1, false)
+      };
+      var skin = "{{skin}}";
+      var preloaded = JSON.parse({{ preload|tojson }});
+      for (var key in preloaded) {
+        skins[key] = new Image();
+        skins[key].src = preloaded[key];
+      }
+      (function() {
+        socket.emit("skin", skin);
+
+        if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          document.getElementById("mobile-controls").style.display = "none";
+        }
+      })();
+    </script>
+  </body>
+</html>
