@@ -1,0 +1,183 @@
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+#enter-area {
+  padding: 5px;
+  min-width: 200px;
+  max-width: 400px;
+  width: 40%;
+  margin: 10vh auto 0 auto;
+  text-align: center;
+  border: 1px solid gray;
+}
+
+#enter-area a, #btg {
+  height: 20px;
+  color: black;
+  font-size: 13px;
+  padding: 1px 10px;
+  border-radius: 2px;
+  border: 1px solid gray;
+  text-decoration: none;
+  background-color: white;
+}
+
+#enter-area a:hover, #btg:hover {
+  background-color: #f7f7f7;
+}
+
+#enter-area input[type="submit"]:hover {
+  filter: brightness(108%);
+}
+
+#enter-area input[type="submit"] {
+  padding: 3px 24px;
+  cursor: pointer;
+  background-color: #1f5fa1;
+  color: white;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+#enter-area input[type="text"] {
+  width: 80%;
+  max-width: 160px;
+  text-align: center;
+  height: 20px;
+  border-radius: 6px;
+  border: 1px solid gray;
+}
+
+#enter-area p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#enter-area h2 {
+  margin: 15px auto 12px;
+}
+
+#skin-container {
+  margin: auto;
+  text-align: center;
+  width: 80%;
+  min-width: 240px;
+  max-width: 780px;
+}
+
+.skin-purchase {
+  height: 195px;
+  border: 2px solid gray;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 4px;
+  margin: 8px;
+  padding: 7px 5px 5px;
+}
+
+.skin-purchase p {
+  font-size: 12px;
+}
+
+.skin-button {
+  padding: 3px 12px;
+  background-color: #a8ffb5;
+  color: black;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+.purchase-button {
+  cursor: pointer;
+  background-color: #a8d9ff;
+}
+
+.purchase-button:hover {
+  filter: brightness(95%);
+}
+
+#game-area {
+  width: 410px;
+  background-color: darkslategray;
+  border-radius: 4px;
+  margin: auto;
+  text-align: center;
+  padding: 16px 5px 0 5px;
+
+}
+
+#game {
+  border-radius: 2px;
+}
+
+#minimap {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  border-radius: 50%;
+  border: 1px solid white;
+  visibility: hidden;
+}
+
+#chat input[type="text"] {
+  background-color: black;
+  border: 1px solid gray;
+  border-radius: 6px;
+  width: 50%;
+  height: 24px;
+  margin-bottom: 5px;
+  padding: 0 4px;
+  color: gainsboro;
+  font-size: 16px;
+}
+
+#chat input[type="submit"] {
+  background-color: darkblue;
+  height: 24px;
+  color: gainsboro;
+  border-radius: 6px;
+  border: 1px solid gray;
+  font-size: 14px;
+  padding: 0px 12px;
+  cursor: pointer;
+}
+
+#canvas-area {
+  position: relative;
+}
+
+#mobile-controls {
+  width: 180px;
+  height: 120px;
+  margin: 10px auto 0;
+  position: relative;
+}
+
+#mobile-controls div {
+  width: 60px;
+  background-color: gainsboro;
+  height: 40px;
+  position: absolute;
+}
+
+#mobile-controls div:active {
+  background-color: gray;
+}
+
+#up, #down {
+  left: calc(50% - 30px);
+}
+
+#left, #right {
+  top: calc(50% - 20px);
+}
+
+#down {
+  bottom: 0;
+}
+
+#right {
+  right: 0;
+}
